@@ -1,6 +1,6 @@
-# Project Name
+# Tic Tac Toe
 
-> One paragraph statement about the project.
+> This game is built using Object Oriented Programming concepts. Particularly, classes and access to their attributes. It involves a couple of players, a simple board, checking for victory in a game loop
 
 ![screenshot](./app_screenshot.png)
 
@@ -8,9 +8,7 @@ Additional description about the project and its features.
 
 ## Built With
 
-- Major languages,
-- frameworks,
-- technologies used
+- Ruby
 
 ## Live Demo
 
@@ -47,11 +45,11 @@ To get a local copy up and running follow these simple example steps.
 - Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
 - Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
 
-👤 **Author2**
+👤 **Adewale Orotayo**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Github: [@didymus707](https://github.com/didymus707)
+- Twitter: [@Didy707](https://twitter.com/didy707)
+- Linkedin: [linkedin](https://linkedin.com/adewale-thomas-orotayo)
 
 ## 🤝 Contributing
 
