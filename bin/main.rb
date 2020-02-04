@@ -1,18 +1,5 @@
 # Tic Tac Toe Game
 
-class Player
-  attr_reader :name
-  attr_reader :count_players
-
-  $count_players  = 0
-
-  def initialize(name)
-    @name = name
-    $count_players += 1
-  end
-  $count_players
-end
-
 puts "\n" + '*' * 50
 puts "\n          ---- Tic Tac TRONIX 2000 ----"
 puts "\n        An strategy game for two players."
@@ -40,7 +27,7 @@ puts "\n                   __RULES__
    in a tie."
 
 print "\n Do you want to play? Y/n: "
-option = gets.chomp
+gets.chomp
 
 puts "\n Player 1, choose your name: "
 print ' > '
@@ -71,7 +58,7 @@ puts "
 \t     |     |
 "
 print "\n\a #{player1.name} your turn, choose number: "
-mark = gets.chomp
+gets.chomp
 
 puts "
 \t     |     |
@@ -85,7 +72,7 @@ puts "
 \t     |     |
 "
 print "\n\a #{player2.name} your turn, choose number: "
-mark = gets.chomp
+gets.chomp
 
 puts "
 \t     |     |
@@ -99,7 +86,7 @@ puts "
 \t     |     |
 "
 print "\n\a #{player1.name} your turn, choose number: "
-mark = gets.chomp
+gets.chomp
 
 puts "
 \t     |     |
@@ -113,7 +100,7 @@ puts "
 \t     |     |
 "
 print "\n\a #{player2.name} your turn, choose number: "
-mark = gets.chomp
+gets.chomp
 
 puts "\n" + '*' * 50
 puts "\n                    END SCORE"
@@ -122,4 +109,4 @@ puts "\n" + '*' * 50
 puts "\n CONGRATULATIONS >>> #{player1.name} <<< YOU WON!!!!"
 puts "\n" + '*' * 50
 print "\n Do you want a to play again Y/n: "
-option = gets.chomp
+gets.chomp
