@@ -1,4 +1,4 @@
-# Tic Tac Toe
+# OOP Tic Tac Toe
 
 > This game is built using Object Oriented Programming concepts. Particularly, classes and access to their attributes. It involves a couple of players, a simple board, checking for victory in a game loop
 
@@ -14,12 +14,10 @@ Additional description about the project and its features.
 
 [Live Demo Link](https://livedemo.com)
 
-
 ## Getting Started
 
 **This is an example of how you may give instructions on setting up your project locally.**
 **Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
 
 To get a local copy up and running follow these simple example steps.
 
@@ -35,15 +33,13 @@ To get a local copy up and running follow these simple example steps.
 
 ### Deployment
 
-
-
 ## Authors
 
 👤 **Author1**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Github: [@jubaan](https://github.com/jubaan)
+- Twitter: [@AnoverosJulio](https://twitter.com/AnoverosJulio)
+- Linkedin: [linkedin](https://www.linkedin.com/in/julio-a%C3%B1overos-b987a8a0/)
 
 👤 **Adewale Orotayo**
 
@@ -55,7 +51,7 @@ To get a local copy up and running follow these simple example steps.
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues page](https://github.com/jubaan/m__oop__tic-tac-toe/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc).
 
 ## Show your support
 
@@ -63,9 +59,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- You can find out more about this project if you click on this link [link](https://www.theodinproject.com/courses/ruby-programming/lessons/oop)
 
 ## 📝 License
 
