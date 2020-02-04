@@ -27,17 +27,17 @@ puts "\n                   __RULES__
    in a tie."
 
 print "\n Do you want to play? Y/n: "
-gets.chomp
+# option = gets.chomp
 
 puts "\n Player 1, choose your name: "
 print ' > '
-player1 = Player.new(gets.chomp.upcase)
+# player1 = Player.new(gets.chomp.upcase)
 
 puts "\n Player 2, choose your name: "
 print ' > '
-player2 = Player.new(gets.chomp.upcase)
+# player2 = Player.new(gets.chomp.upcase)
 
-puts "\n Welcome #{player1.name} and #{player2.name.upcase} the game is about to start."
+puts "\n Welcome palyer1.name and player2.name the game is about to start."
 
 puts "\n Remember the player who gets FIRST 3 marks in a row wins."
 
@@ -57,8 +57,8 @@ puts "
 \t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
 \t     |     |
 "
-print "\n\a #{player1.name} your turn, choose number: "
-gets.chomp
+print "\n\a player1.name your turn, choose number: "
+# mark = gets.chomp
 
 puts "
 \t     |     |
@@ -71,8 +71,8 @@ puts "
 \t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
 \t     |     |
 "
-print "\n\a #{player2.name} your turn, choose number: "
-gets.chomp
+print "\n\a player2.name your turn, choose number: "
+# mark = gets.chomp
 
 puts "
 \t     |     |
@@ -85,8 +85,8 @@ puts "
 \t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
 \t     |     |
 "
-print "\n\a #{player1.name} your turn, choose number: "
-gets.chomp
+print "\n\a player1.name your turn, choose number: "
+# mark = gets.chomp
 
 puts "
 \t     |     |
@@ -99,14 +99,14 @@ puts "
 \t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
 \t     |     |
 "
-print "\n\a #{player2.name} your turn, choose number: "
-gets.chomp
+print "\n\a player2.name your turn, choose number: "
+# mark = gets.chomp
 
 puts "\n" + '*' * 50
 puts "\n                    END SCORE"
-puts "\n          #{player1.name} 1 | 0 #{player2.name}"
+puts "\n          player1.name 1 | 0 player2.name"
 puts "\n" + '*' * 50
-puts "\n CONGRATULATIONS >>> #{player1.name} <<< YOU WON!!!!"
+puts "\n CONGRATULATIONS >>> player1.name <<< YOU WON!!!!"
 puts "\n" + '*' * 50
 print "\n Do you want a to play again Y/n: "
-gets.chomp
+# option = gets.chomp
