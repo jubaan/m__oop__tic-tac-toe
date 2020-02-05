@@ -44,7 +44,6 @@ puts "\n This is the board, you'll have to choose one space
 
 board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 game_on = true
-
 while game_on 
   puts "
   \t     |     |
@@ -58,10 +57,10 @@ while game_on
   \t     |     |
   "
   print "\n\a player1.name your turn, choose number: "
+
   if player1.name choice is a cell on the board
     replace the cell space with player1.name game piece
-  else 
-    puts 'pick a number on the board'
+  else puts 'pick a number on the board'
   end
   # mark = gets.chomp
 
