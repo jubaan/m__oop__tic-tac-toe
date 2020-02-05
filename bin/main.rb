@@ -105,13 +105,15 @@ puts "
 "
 print "\n\a player2.name your turn, choose number: "
 # mark = gets.chomp
+
 if 'game board cell is filled'
-    puts winner if 3 + ' game pieces are crossed'
-    puts loser + ' you lose'
-    puts draw if 'no crosses on the board'
+  puts winner if 3 + ' game pieces are crossed'
+  puts loser + ' you lose'
+  puts draw if 'no crosses on the board'
 end
 break unless game_on
 end
+
 puts "\n" + '*' * 50
 puts "\n                    END SCORE"
 puts "\n          player1.name 1 | 0 player2.name"
