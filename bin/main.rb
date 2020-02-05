@@ -76,44 +76,44 @@ while game_on
   \t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
   \t     |     |
   "
-print "\n\a player2.name your turn, choose number: "
-# mark = gets.chomp
+  print "\n\a player2.name your turn, choose number: "
+  # mark = gets.chomp
 
-puts "
-\t     |     |
-\t  #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]}
-\t_____|_____|_____
-\t     |     |
-\t  #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]}
-\t_____|_____|_____
-\t     |     |
-\t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
-\t     |     |
-"
-print "\n\a player1.name your turn, choose number: "
-# mark = gets.chomp
+  puts "
+  \t     |     |
+  \t  #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]}
+  \t_____|_____|_____
+  \t     |     |
+  \t  #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]}
+  \t_____|_____|_____
+  \t     |     |
+  \t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
+  \t     |     |
+  "
+  print "\n\a player1.name your turn, choose number: "
+  # mark = gets.chomp
 
-puts "
-\t     |     |
-\t  #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]}
-\t_____|_____|_____
-\t     |     |
-\t  #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]}
-\t_____|_____|_____
-\t     |     |
-\t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
-\t     |     |
-"
-print "\n\a player2.name your turn, choose number: "
-# mark = gets.chomp
+  puts "
+  \t     |     |
+  \t  #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]}
+  \t_____|_____|_____
+  \t     |     |
+  \t  #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]}
+  \t_____|_____|_____
+  \t     |     |
+  \t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
+  \t     |     |
+  "
+  print "\n\a player2.name your turn, choose number: "
+  # mark = gets.chomp
 
-if game board cell is filled
-  puts winner if 3 + ' game pieces are crossed'
-  puts loser + ' you lose'
-  puts draw if no crosses on the board
-  game_on = false
-end
-break unless game_on
+  if game board cell is filled
+    puts winner if 3 + ' game pieces are crossed'
+    puts loser + ' you lose'
+    puts draw if no crosses on the board
+    game_on = false
+  end
+  break unless game_on
 end
 
 puts "\n" + '*' * 50
