@@ -1,5 +1,3 @@
-# Tic Tac Toe Game
-
 puts "\n" + '*' * 50
 puts "\n          ---- Tic Tac TRONIX 2000 ----"
 puts "\n        An strategy game for two players."
@@ -45,7 +43,8 @@ puts "\n This is the board, you'll have to choose one space
  at a time by selecting the number of the square."
 
 board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-
+game_on = true
+while game_on 
 puts "
 \t     |     |
 \t  #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]}
@@ -58,6 +57,11 @@ puts "
 \t     |     |
 "
 print "\n\a player1.name your turn, choose number: "
+if player1.name choice is a cell on the board
+    replace the cell space with player1.name game piece
+else 
+    puts "pick a number on the board"
+end
 # mark = gets.chomp
 
 puts "
@@ -101,7 +105,13 @@ puts "
 "
 print "\n\a player2.name your turn, choose number: "
 # mark = gets.chomp
-
+if 'game board cell is filled'
+    puts winner if 3 + ' game pieces are crossed'
+    puts loser + ' you lose'
+    puts draw if 'no crosses on the board'
+end
+break unless game_on
+end
 puts "\n" + '*' * 50
 puts "\n                    END SCORE"
 puts "\n          player1.name 1 | 0 player2.name"
