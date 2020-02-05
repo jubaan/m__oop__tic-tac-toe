@@ -1,5 +1,5 @@
 # rubocop:disable all"
-...
+[...]
 # rubocop:enable all
 
 puts "\n" + '*' * 50
