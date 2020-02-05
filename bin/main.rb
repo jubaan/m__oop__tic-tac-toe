@@ -1,3 +1,7 @@
+# rubocop:disable all"
+...
+# rubocop:enable all
+
 puts "\n" + '*' * 50
 puts "\n          ---- Tic Tac TRONIX 2000 ----"
 puts "\n        An strategy game for two players."
@@ -43,7 +47,9 @@ puts "\n This is the board, you'll have to choose one space
  at a time by selecting the number of the square."
 
 board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-game_on = true while game_on 
+game_on = true 
+
+while game_on 
   puts "
   \t     |     |
   \t  #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]}
