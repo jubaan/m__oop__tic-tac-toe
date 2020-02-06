@@ -67,7 +67,6 @@ class Player
     $count += 1
   end
 
-
   def mark_assignation
     if $count == 1
       @mark = 'X'
