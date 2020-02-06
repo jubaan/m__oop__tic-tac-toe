@@ -130,11 +130,7 @@ boar
   [7,8,9]
 ]
 
-board = []
 
-(board_size**2).times { |x|
-  board[x] = x + 1
-}
 
 board[0] | board[1] | board[2]
 board[3] | board[4] | board[5]
@@ -144,6 +140,10 @@ board[6] | board[7]  |board[8]
 # [1,2,3,4,5,6,7,8,9]
 
 board_size = 3
+board = []
+(board_size**2).times { |x|
+  board[x] = x + 1
+}
 board = "123456789"
 player1 = ""
 
