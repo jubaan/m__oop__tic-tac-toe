@@ -6,7 +6,7 @@ class Game
     @player2.select_piece
 
     @active_player = @player1
-    @board = Board.new(3)
+    @board = Board.new
     puts @active_player.name
   end
 
@@ -31,27 +31,16 @@ class Game
       puts "\nWelcome #{@player1.name} you are #{@player1.mark} and #{@player2.name} your are #{@player2.mark}."
   
       puts "This is the board"
-      board = Board.new
-      board.init_board
-  
-      # puts "\n#{player1.name} you start, please pick a numnber of the board to leave your mark"
-      # print prompt
-      # pick = gets.chomp
-      # game_on.space_selection(pick, player1.mark)
-      # puts "\n#{player2.name} you start, please pick a numnber of the board to leave your mark"
-      # print prompt
-      # pick = gets.chomp
-      # game_on.space_selection(pick, player2.mark)
+      @board
   
       winner = false
-      player_pick = []
       loop do
         puts "#{@active_player.name}, pick a number to put your mark"
         pick = gets.chomp.to_i
-        player_pick << pick
+        @active_player.choices << pick
         @board.confirm_position(pick, @active_player.mark)
         # @board.space_selection(pick, active_player.mark)
-        winner = win_validation(player_pick)
+        winner = win_validation(@active_player.choices)
         break if winner == true
         switch
       end
@@ -74,7 +63,7 @@ class Game
 end
 
 class Player
-  attr_reader :name, :mark
+  attr_reader :name, :mark, :choices
   $count = 0
   def initialize(name)
     @name = name
@@ -96,7 +85,7 @@ end
 
 class Board
 
-  def init_board
+  def initialize
     @board_size = 3
     @board = []
     (@board_size**2).times { |x| @board[x] = (x + 1) }
@@ -118,7 +107,6 @@ class Board
     if @board[choice - 1] == choice && @board[choice - 1] != 'X' || 'O'
       check = true
       puts 'Position is valid, I am placing the game piece there now'
-      @count += 1
       space_selection(choice, mark)
     else
       puts 'Please select a valid option'
