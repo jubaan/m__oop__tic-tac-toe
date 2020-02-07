@@ -1,3 +1,28 @@
+class Player
+  attr_reader :name, :game_piece
+
+  def initialize(name, game_piece)
+    @name = name
+    @game_piece = game_piece
+  end
+
+  def play
+    
+  end
+
+end
+
+class Game
+
+  def initialize(size)
+    @board = Array.new(size)
+    row = []
+    size
+  end
+
+end
+
+
 puts "\n" + '*' * 50
 puts "\n          ---- Tic Tac TRONIX 2000 ----"
 puts "\n        An strategy game for two players."

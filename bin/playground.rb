@@ -42,34 +42,40 @@ class Board
   end
 end
 
-def play(play)
-  if /^[Yy]((ES|es){1})*$/ =~ play
-    puts "\nPlayer 1 choose your name: "
-    print '> '
-    name = gets.chomp
-    player1 = Player.new(name)
-    player1.mark_assignation
-    puts "\nPlayer 2 choose your name: "
-    print '> '
-    name =gets.chomp
-    player2 = Player.new(name)
-    player2.mark_assignation
+class Game
 
-    puts "Welcome #{player1.name} you are #{player1.mark} and #{player2.name} your are #{player2.mark}."
-
-    puts "This is the board"
-    game_on = Board.new
-    game_on.init_board
-
-  elsif /^[Nn]([Oo]{1})*$/ === play
-    puts "Goodbye..."
-  else
-    puts 'Write a valid answer. Yes or No.'
-    print "\nDo you wanna play? Y/n: "
-    answer = gets.chomp
-    play(answer)
+  def play(play)
+    if /^[Yy]((ES|es){1})*$/ =~ play
+      puts "\nPlayer 1 choose your name: "
+      print '> '
+      name = gets.chomp
+      player1 = Player.new(name)
+      player1.mark_assignation
+      puts "\nPlayer 2 choose your name: "
+      print '> '
+      name =gets.chomp
+      player2 = Player.new(name)
+      player2.mark_assignation
+  
+      puts "Welcome #{player1.name} you are #{player1.mark} and #{player2.name} your are #{player2.mark}."
+  
+      puts "This is the board"
+      game_on = Board.new
+      game_on.init_board
+  
+    elsif /^[Nn]([Oo]{1})*$/ === play
+      puts "Goodbye..."
+    else
+      puts 'Write a valid answer. Yes or No.'
+      print "\nDo you wanna play? Y/n: "
+      answer = gets.chomp
+      play(answer)
+    end
   end
+
 end
+
+
 
 puts "\n" + '*' * 50
 puts "\n          ---- Tic Tac TRONIX 2000 ----"
@@ -100,3 +106,42 @@ puts "\n                   __RULES__
 print "\nDo you wanna play? Y/n: "
 answer = gets.chomp
 play(answer)
+
+# def players_play(choice)
+#   # selects a cell on the board
+#   player1_arr = []
+#   player2_arr = []
+#   i = choice - 1
+#   while i < board.length
+#       if (1..9).include? choice
+#           player1_arr << choice
+#           board[i] = player1.mark
+#           board
+#       else
+#           puts 'Select a valid number from 1 to 9'
+#       end
+#   end
+#   init_board
+# end
+
+# def play(answer)
+#   if answer === "yes" || "y"
+#       puts "Pick a number"
+#   elsif answer === "no" || "n"
+#       puts "exit the program by pressing Ctrl + C"
+#   else
+#       puts 'Select a yes or a no'
+#   end
+# end
+
+def switch_players(game_piece)
+  current_player = nil
+  if game_piece == 'X'
+      current_player = player1.mark
+  else
+      current_player = player2.mark
+  end
+end
+
+
+
