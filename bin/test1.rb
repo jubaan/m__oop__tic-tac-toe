@@ -1,13 +1,89 @@
+class Game
+  def initialize
+    @player1 = Player.new(gets.chomp)
+    @player1.select_piece
+    @player2 = Player.new(gets.chomp)
+    @player2.select_piece
+
+    @active_player = @player1
+    @board = Board.new(3)
+    puts @active_player.name
+  end
+
+  def switch
+    if @active_player == @player1
+      @active_player = @player2
+    else
+      @active_player = @player1
+    end
+  end
+
+  def win_validation(player_pick)
+    @win = false
+    @winning_list = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
+    @winning_list.any? { |combination|
+      @win = true if  combination.all? { |x| player_pick.include?(x) } }
+    @win
+  end
+
+  def play(play)
+    if /^y(es){0,1}$/i =~ play  
+      puts "\nWelcome #{@player1.name} you are #{@player1.mark} and #{@player2.name} your are #{@player2.mark}."
+  
+      puts "This is the board"
+      board = Board.new
+      board.init_board
+  
+      # puts "\n#{player1.name} you start, please pick a numnber of the board to leave your mark"
+      # print prompt
+      # pick = gets.chomp
+      # game_on.space_selection(pick, player1.mark)
+      # puts "\n#{player2.name} you start, please pick a numnber of the board to leave your mark"
+      # print prompt
+      # pick = gets.chomp
+      # game_on.space_selection(pick, player2.mark)
+  
+      winner = false
+      player_pick = []
+      loop do
+        puts "#{@active_player.name}, pick a number to put your mark"
+        pick = gets.chomp.to_i
+        player_pick << pick
+        @board.confirm_position(pick, @active_player.mark)
+        # @board.space_selection(pick, active_player.mark)
+        winner = win_validation(player_pick)
+        break if winner == true
+        switch
+      end
+      if winner == true
+        puts "You're a winner"
+      end
+      puts winner
+  
+  
+    elsif /^no{0,1}$/i =~ play
+      puts "Goodbye..."
+    else
+      puts"\nDidn't get you. You said you wanna play: Yes or No?"
+      print prompt
+      answer = gets.chomp
+      play(answer)
+    end
+  end
+
+end
+
 class Player
   attr_reader :name, :mark
   $count = 0
   def initialize(name)
     @name = name
     @mark = mark
+    @choices = []
     $count += 1
   end
 
-  def mark_assignation
+  def select_piece
     if $count == 1
       @mark = 'X'
     elsif $count == 2
@@ -37,6 +113,21 @@ class Board
     "
   end
 
+  def confirm_position(choice, mark)
+    check = false
+    if @board[choice - 1] == choice && @board[choice - 1] != 'X' || 'O'
+      check = true
+      puts 'Position is valid, I am placing the game piece there now'
+      @count += 1
+      space_selection(choice, mark)
+    else
+      puts 'Please select a valid option'
+      print '> '
+      choice = gets.chomp
+      space_selection(choice, mark)
+    end
+  end
+
   def space_selection(choice, mark)
     if @board.include?(choice) && choice != /(\+ || \-)+/
       @board[choice-1] = mark
@@ -57,73 +148,6 @@ class Board
       choice = gets.chomp
       space_selection(choice, mark)
     end
-  end
-end
-
-def win_validation(player_pick)
-  @win = false
-  @winning_list = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
-  @winning_list.any? { |combination|
-    @win = true if  combination.all? { |x| player_pick.include?(x) } }
-  @win
-end
-
-def play(play)
-  if /^y(es){0,1}$/i =~ play
-
-    prompt = '> '
-    puts "\nPlayer 1 choose your name: "
-    print prompt
-    name = gets.chomp
-
-    player1 = Player.new(name)
-    player1.mark_assignation
-
-    puts "\nPlayer 2 choose your name: "
-    print prompt
-    name =gets.chomp
-
-    player2 = Player.new(name)
-    player2.mark_assignation
-
-    puts "\nWelcome #{player1.name} you are #{player1.mark} and #{player2.name} your are #{player2.mark}."
-
-    puts "This is the board"
-    game_on = Board.new
-    game_on.init_board
-
-    # puts "\n#{player1.name} you start, please pick a numnber of the board to leave your mark"
-    # print prompt
-    # pick = gets.chomp
-    # game_on.space_selection(pick, player1.mark)
-    # puts "\n#{player2.name} you start, please pick a numnber of the board to leave your mark"
-    # print prompt
-    # pick = gets.chomp
-    # game_on.space_selection(pick, player2.mark)
-
-    winner = false
-    player_pick = []
-    loop do
-      puts "pick a number to put your mark"
-      pick = gets.chomp.to_i
-      player_pick << pick
-      game_on.space_selection(pick, player1.mark)
-      winner = win_validation(player_pick)
-      break if winner == true
-    end
-    if winner == true
-      puts "You're a winner"
-    end
-    puts winner
-
-
-  elsif /^no{0,1}$/i =~ play
-    puts "Goodbye..."
-  else
-    puts"\nDidn't get you. You said you wanna play: Yes or No?"
-    print prompt
-    answer = gets.chomp
-    play(answer)
   end
 end
 
@@ -155,4 +179,7 @@ puts "\n                   __RULES__
 
 print "\nDo you wanna play? Y/n: "
 answer = gets.chomp
-play(answer)
+game_on = Game.new
+game_on.play(answer)
+
+

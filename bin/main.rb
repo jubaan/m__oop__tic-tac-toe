@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 class Player
-  attr_reader :name, :game_piece
+  attr_reader :name, :piece
 
-  def initialize(name, game_piece)
+  def initialize(name)
     @name = name
-    @game_piece = game_piece
+    @piece = piece
   end
 
   def play
@@ -23,9 +22,6 @@ class Game
 
 end
 
-=======
-require_relative '../lib/game_logic'
->>>>>>> 9a6b8ebfe7f2654735858f21f4201dfa82af137b
 
 puts "\n" + '*' * 50
 puts "\n          ---- Tic Tac TRONIX 2000 ----"
