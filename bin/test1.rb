@@ -103,13 +103,21 @@ def play(play)
 
     winner = false
     player_pick = []
+    count = 0
     loop do
+      players = [player1.mark, player2.mark]
+
       puts "pick a number to put your mark"
       pick = gets.chomp.to_i
       player_pick << pick
-      game_on.space_selection(pick, player1.mark)
+      players_mark = players[count]
+      game_on.space_selection(pick, players_mark)
       winner = win_validation(player_pick)
+      count += 1
+      count = 0 if count ==2
       break if winner == true
+
+
     end
     if winner == true
       puts "You're a winner"
