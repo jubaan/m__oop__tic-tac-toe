@@ -1,4 +1,31 @@
+<<<<<<< HEAD
+class Player
+  attr_reader :name, :game_piece
+
+  def initialize(name, game_piece)
+    @name = name
+    @game_piece = game_piece
+  end
+
+  def play
+    
+  end
+
+end
+
+class Game
+
+  def initialize(size)
+    @board = Array.new(size)
+    row = []
+    size
+  end
+
+end
+
+=======
 require_relative '../lib/game_logic'
+>>>>>>> 9a6b8ebfe7f2654735858f21f4201dfa82af137b
 
 puts "\n" + '*' * 50
 puts "\n          ---- Tic Tac TRONIX 2000 ----"

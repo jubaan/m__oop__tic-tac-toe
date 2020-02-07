@@ -63,8 +63,7 @@ class Board
 end
 
 def play(play)
-  if /^y(es){0,1}$/i =~ play
-
+  if pay === "yes" || "y"
     prompt = '> '
     puts "\nPlayer 1 choose your name: "
     print prompt
@@ -96,7 +95,7 @@ def play(play)
     game_on.space_selection(pick, player2.mark)
 
 
-  elsif /^no{0,1}$/i =~ play
+  elsif play === "no" || "n"
     puts "Goodbye..."
   else
     puts"\nDidn't get you. You said you wanna play: Yes or No?"
