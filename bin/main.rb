@@ -1,28 +1,4 @@
-class Player
-  attr_reader :name, :piece
-
-  def initialize(name)
-    @name = name
-    @piece = piece
-  end
-
-  def play
-    
-  end
-
-end
-
-class Game
-
-  def initialize(size)
-    @board = Array.new(size)
-    row = []
-    size
-  end
-
-end
-
-
+require_relative '../lib/game_logic'
 puts "\n" + '*' * 50
 puts "\n          ---- Tic Tac TRONIX 2000 ----"
 puts "\n        An strategy game for two players."
@@ -51,4 +27,4 @@ puts "\n                   __RULES__
 
 print "\nDo you wanna play? Y/n: "
 answer = gets.chomp
-play(answer)
+Game.play(answer)
