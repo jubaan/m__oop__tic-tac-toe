@@ -77,7 +77,9 @@ class Game
 
       @active_player = @p1
 
-      puts "\nWelcome players!, #{@p1.name.upcase} you'll play as the '#{@p1.mark}' and #{@p2.name.upcase} you'll play as the '#{@p2.mark}'."
+      puts "\nWelcome players!,
+      #{@p1.name.upcase} you'll play as the '#{@p1.mark}'
+      and #{@p2.name.upcase} you'll play as the '#{@p2.mark}'."
 
       puts "\nThis is the board"
       game_on = Board.new
