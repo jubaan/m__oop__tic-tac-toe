@@ -1,4 +1,3 @@
-# Create Players
 class Player
   attr_reader :name, :mark, :pick, :choices
 
@@ -6,7 +5,7 @@ class Player
 
   def initialize(name, pick = nil, count = 0)
     @name = name
-    @mark = @mark = @@count.zero? ? '+' : '-'
+    @mark = @@count.zero? ? '+' : '-'
     @pick = pick
     @choices = []
     @@count += 1
@@ -86,13 +85,13 @@ class Game
       result = false
 
       loop do
-        puts "\n#{@active_player.name} pick a number to put your mark"
+        puts "\n#{@active_player.name} pick a number to put your game piece"
         pick = gets.chomp.to_i
         @active_player.choices << pick
         game_on.space_selection(pick, @active_player.mark)
 
         if game_on.win_validation(@active_player.choices)
-          puts "Congratulations #{@active_player.name}you're a winner"
+          puts "Congratulations #{@active_player.name}, you're a winner"
           result = true
         elsif game_on.draw_validation
           puts "It's a draw"
