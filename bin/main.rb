@@ -1,4 +1,5 @@
 require_relative '../lib/game_logic'
+
 puts "\n" + '*' * 50
 puts "\n          ---- Tic Tac TRONIX 2000 ----"
 puts "\n        An strategy game for two players."
