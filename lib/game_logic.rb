@@ -18,14 +18,12 @@ class Board
   def initialize(board_size = 3)
     @board_size = board_size
     @availible_spaces = []
-    @backup = []
     (@board_size**2).times do |x|
       x += 1
       @availible_spaces << x
       print "|#{x < 10 ? "  #{@availible_spaces[x - 1]} " : " #{@availible_spaces[x - 1]} "}"
       print "|\n" if (x % board_size).zero?
     end
-    @backup
   end
 
   def space_selection(pick, mark)
@@ -62,47 +60,15 @@ class Game
 
   def self.play(answer)
     if /^y(es){0,1}$/i =~ answer
-      prompt = '> '
-      puts "\nPlayer 1 choose your name: "
-      print prompt
-      name = gets.chomp
-
-      @p1 = Player.new(name)
-
-      puts "\nNow, Player 2 choose your name: "
-      print prompt
-      name = gets.chomp
-
-      @p2 = Player.new(name)
-
-      @active_player = @p1
+      player_validation
 
       puts "\nWelcome players!,
       #{@p1.name.upcase} you'll play as the '#{@p1.mark}'
       and #{@p2.name.upcase} you'll play as the '#{@p2.mark}'."
 
       puts "\nThis is the board"
-      game_on = Board.new
 
-      result = false
-
-      loop do
-        puts "\n#{@active_player.name} pick a number to put your game piece"
-        pick = gets.chomp.to_i
-        @active_player.choices << pick
-        game_on.space_selection(pick, @active_player.mark)
-
-        if game_on.win_validation(@active_player.choices)
-          puts "Congratulations #{@active_player.name}, you're a winner"
-          result = true
-        elsif game_on.draw_validation
-          puts "It's a draw"
-          result = true
-        end
-
-        Game.switch_players
-        break if result == true
-      end
+      turns(@active_player)
 
     elsif /^no{0,1}$/i =~ answer
       puts 'Goodbye...'
@@ -116,5 +82,45 @@ class Game
 
   def self.switch_players
     @active_player = @active_player == @p1 ? @p2 : @p1
+  end
+
+  def self.player_validation
+    prompt = '> '
+    puts "\nPlayer 1 choose your name: "
+    print prompt
+    name = gets.chomp
+
+    @p1 = Player.new(name)
+
+    puts "\nNow, Player 2 choose your name: "
+    print prompt
+    name = gets.chomp
+
+    @p2 = Player.new(name)
+
+    @active_player = @p1
+  end
+
+  def self.turns(_active_player)
+    game_on = Board.new
+    result = false
+
+    loop do
+      puts "\n#{@active_player.name} pick a number to put your game piece"
+      pick = gets.chomp.to_i
+      @active_player.choices << pick
+      game_on.space_selection(pick, @active_player.mark)
+
+      if game_on.win_validation(@active_player.choices)
+        puts "Congratulations #{@active_player.name}, you're a winner"
+        result = true
+      elsif game_on.draw_validation
+        puts "It's a draw"
+        result = true
+      end
+
+      Game.switch_players
+      break if result == true
+    end
   end
 end
