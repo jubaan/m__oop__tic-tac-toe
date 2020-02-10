@@ -3,7 +3,7 @@ class Player
 
   @@count = 0
 
-  def initialize(name, pick = nil, count = 0)
+  def initialize(name, pick = nil)
     @name = name
     @mark = @@count.zero? ? '+' : '-'
     @pick = pick
