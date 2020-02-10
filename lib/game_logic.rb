@@ -27,7 +27,7 @@ class Board
   end
 
   def space_selection(pick, mark)
-    if @availible_spaces.include?(pick) && pick != ~ /(x || o)+/i
+    if @availible_spaces.include?(pick) && pick != ~ /(\+ || |-)+/i
       @availible_spaces[pick - 1] = mark
       (@board_size**2).times do |x|
         x += 1
@@ -59,6 +59,7 @@ class Game
   attr_reader :p1, :p2, :active_player
 
   def self.play(answer)
+    prompt = '> '
     if /^y(es){0,1}$/i =~ answer
       player_validation
 
