@@ -5,8 +5,8 @@ class Player
 
   def initialize(name, pick = nil)
     @name = name
-    @mark = @@count.zero? ? 'X' : 'O'
-    # @pick = pick
+    @mark = @@count.zero? ? '+' : '-'
+    @pick = pick
     @choices = []
     @@count += 1
   end
@@ -16,26 +16,23 @@ class Board
   attr_reader :board_size, :availible_spaces, :win, :draw
 
   def initialize
-    @board_size = 3
+    @board_size = board_size
     @availible_spaces = []
-    @separator = [1, 2, 4, 5, 7, 8]
     (@board_size**2).times do |x|
       x += 1
       @availible_spaces << x
-      print "#{x < 10 ? "  #{@availible_spaces[x - 1]}  " : " #{@availible_spaces[x - 1]} "}"
-      print "||" if @separator.include?(x)
-      print "\n" if (x % @board_size).zero?
+      print "|#{x < 10 ? "  #{@availible_spaces[x - 1]} " : " #{@availible_spaces[x - 1]} "}"
+      print "|\n" if (x % board_size).zero?
     end
   end
 
   def space_selection(pick, mark)
-    if @availible_spaces.include?(pick) && pick.to_s =~ /\d/
+    if @availible_spaces.include?(pick) && pick != ~ /(\+ || |-)+/i
       @availible_spaces[pick - 1] = mark
       (@board_size**2).times do |x|
         x += 1
-        print "#{x < 10 ? "  #{@availible_spaces[x - 1]}  " : " #{@availible_spaces[x - 1]} "}"
-        print "||" if @separator.include?(x)
-        print "\n" if (x % board_size).zero?
+        print "|#{x < 10 ? "  #{@availible_spaces[x - 1]} " : " #{@availible_spaces[x - 1]} "}"
+        print "|\n" if (x % board_size).zero?
       end
     else
       puts 'Please select a valid option'
@@ -109,9 +106,8 @@ class Game
     loop do
       puts "\n#{@active_player.name} pick a number to put your game piece"
       pick = gets.chomp.to_i
-      game_on.space_selection(pick, @active_player.mark)
       @active_player.choices << pick
-      print @active_player.choices
+      game_on.space_selection(pick, @active_player.mark)
 
       if game_on.win_validation(@active_player.choices)
         puts "Congratulations #{@active_player.name}, you're a winner"
