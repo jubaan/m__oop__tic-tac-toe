@@ -1,3 +1,4 @@
+# Create players
 class Player
   attr_reader :name, :mark, :pick, :choices
 
