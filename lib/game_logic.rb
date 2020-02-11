@@ -6,7 +6,7 @@ class Player
   def initialize(name, pick = nil)
     @name = name
     @mark = @@count.zero? ? 'X' : 'O'
-    @pick = pick
+    # @pick = pick
     @choices = []
     @@count += 1
   end
@@ -22,8 +22,8 @@ class Board
     (@board_size**2).times do |x|
       x += 1
       @availible_spaces << x
-      print "#{x < 10 ? "  #{@availible_spaces[x - 1]} " : " #{@availible_spaces[x - 1]} "}"
-      print "|" if @separator.include?(x)
+      print "#{x < 10 ? "  #{@availible_spaces[x - 1]}  " : " #{@availible_spaces[x - 1]} "}"
+      print "||" if @separator.include?(x)
       print "\n" if (x % @board_size).zero?
     end
   end
@@ -33,8 +33,8 @@ class Board
       @availible_spaces[pick - 1] = mark
       (@board_size**2).times do |x|
         x += 1
-        print "#{x < 10 ? "  #{@availible_spaces[x - 1]} " : " #{@availible_spaces[x - 1]} "}"
-        print "|" if @separator.include?(x)
+        print "#{x < 10 ? "  #{@availible_spaces[x - 1]}  " : " #{@availible_spaces[x - 1]} "}"
+        print "||" if @separator.include?(x)
         print "\n" if (x % board_size).zero?
       end
     else
@@ -110,6 +110,8 @@ class Game
       puts "\n#{@active_player.name} pick a number to put your game piece"
       pick = gets.chomp.to_i
       game_on.space_selection(pick, @active_player.mark)
+      @active_player.choices << pick
+      print @active_player.choices
 
       if game_on.win_validation(@active_player.choices)
         puts "Congratulations #{@active_player.name}, you're a winner"
