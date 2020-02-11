@@ -27,7 +27,7 @@ class Board
     end
   end
 
-  def space_selection(pick, mark)
+  def space_selection(pick, mark, choices)
     if @availible_spaces.include?(pick) && pick != ~ /(\+ || |-)+/i
       @availible_spaces[pick - 1] = mark
       (@board_size**2).times do |x|
@@ -39,7 +39,8 @@ class Board
       puts 'Please select a valid option'
       print '> '
       choice = gets.chomp.to_i
-      space_selection(choice, mark)
+      choices << choice
+      space_selection(choice, mark, choices)
     end
   end
 
@@ -107,7 +108,7 @@ class Game
     loop do
       puts "\n#{@active_player.name} pick a number to put your game piece"
       pick = gets.chomp.to_i
-      game_on.space_selection(pick, @active_player.mark)
+      game_on.space_selection(pick, @active_player.mark, @active_player.choices)
       @active_player.choices << pick
       print @active_player.choices
 
