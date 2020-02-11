@@ -43,12 +43,11 @@ class Board
   end
 
   def win_validation(player_pick)
-    @winning_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-    @winning_list.any? { |combination| combination.all? { |x| player_pick.include?(x) } }
+    winning_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+    winning_list.any? { |combination| combination.all? { |x| player_pick.include?(x) } }
   end
 
   def draw_validation
-    @draw = false
     @availible_spaces.all? { |x| @draw = true if x.class == String }
   end
 end
