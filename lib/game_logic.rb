@@ -5,7 +5,7 @@ class Player
 
   def initialize(name, pick = nil)
     @name = name
-    @mark = @@count.zero? ? '+' : '-'
+    @mark = @@count.zero? ? 'X' : 'O'
     @pick = pick
     @choices = []
     @@count += 1
@@ -107,7 +107,9 @@ class Game
     loop do
       puts "\n#{@active_player.name} pick a number to put your game piece"
       pick = gets.chomp.to_i
-      @active_player.choices << pick
+      if pick.to_s =~ /(^0 || \d)/
+        @active_player.choices << pick
+      end
       game_on.space_selection(pick, @active_player.mark)
 
       if game_on.win_validation(@active_player.choices)
