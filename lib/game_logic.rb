@@ -16,7 +16,7 @@ class Board
   attr_reader :board_size, :availible_spaces, :win, :draw
 
   def initialize
-    @board_size = board_size
+    @board_size = 3
     @availible_spaces = []
     (@board_size**2).times do |x|
       x += 1
