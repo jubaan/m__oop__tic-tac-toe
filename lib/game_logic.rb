@@ -15,14 +15,16 @@ end
 class Board
   attr_reader :board_size, :availible_spaces, :win, :draw
 
-  def initialize(board_size = 3)
-    @board_size = board_size
+  def initialize
+    @board_size = 3
     @availible_spaces = []
+    @separator = [1, 2, 4, 5, 7, 8]
     (@board_size**2).times do |x|
       x += 1
       @availible_spaces << x
-      print "|#{x < 10 ? "  #{@availible_spaces[x - 1]} " : " #{@availible_spaces[x - 1]} "}"
-      print "|\n" if (x % board_size).zero?
+      print "#{x < 10 ? "  #{@availible_spaces[x - 1]} " : " #{@availible_spaces[x - 1]} "}"
+      print "|" if @separator.include?(x)
+      print "\n" if (x % @board_size).zero?
     end
   end
 
@@ -31,8 +33,9 @@ class Board
       @availible_spaces[pick - 1] = mark
       (@board_size**2).times do |x|
         x += 1
-        print "|#{x < 10 ? "  #{@availible_spaces[x - 1]} " : " #{@availible_spaces[x - 1]} "}"
-        print "|\n" if (x % board_size).zero?
+        print "#{x < 10 ? "  #{@availible_spaces[x - 1]} " : " #{@availible_spaces[x - 1]} "}"
+        print "|" if @separator.include?(x)
+        print "\n" if (x % board_size).zero?
       end
     else
       puts 'Please select a valid option'
@@ -52,7 +55,6 @@ class Board
   end
 end
 
-# Makes the game playable
 class Game
   attr_reader :p1, :p2, :active_player
 
