@@ -107,8 +107,9 @@ class Game
     loop do
       puts "\n#{@active_player.name} pick a number to put your game piece"
       pick = gets.chomp.to_i
-      @active_player.choices << pick
       game_on.space_selection(pick, @active_player.mark)
+      @active_player.choices << pick
+      print @active_player.choices
 
       if game_on.win_validation(@active_player.choices)
         puts "Congratulations #{@active_player.name}, you're a winner"
