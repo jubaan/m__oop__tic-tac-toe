@@ -39,7 +39,7 @@ while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
       pick = gets.chomp.to_i
       board.space_selection(pick, game.active_player.mark, game.active_player.choices)
       print_board(board.availible_spaces)
-      puts "Congratulations #{game.active_player.name}, you're a winner" if board.win_validation(game.active_player.choices)
+      puts "Congratulations #{game.active_player.name}, you win" if board.win_validation(game.active_player.choices)
       puts "It's a draw" if board.draw_validation
       break if board.win_validation(game.active_player.choices) || board.draw_validation
       game.switch_players 
