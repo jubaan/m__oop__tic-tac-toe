@@ -43,8 +43,8 @@ while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
         game_board.space_selection(pick, console.active_player.mark, console.active_player.choices)
         print_board(game_board.availible_spaces)
         check(game_board, console)
-        (game_board.win_validation(console.active_player.choices) || game_board.draw_validation) ? break : nil
-
+        break if game_board.win_validation(console.active_player.choices) || game_board.draw_validation
+        
         console.switch_players
       end
     end
