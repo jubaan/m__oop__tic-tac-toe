@@ -60,7 +60,7 @@ while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
     end
     until game.result
       puts "\n#{game.active_player.name} pick a number to put your game piece"
-      pick = gets.chomp.to_i
+      pick = gets.chomp
       print pick, game.active_player.mark, game.active_player.choices
       board.space_selection(pick, game.active_player.mark, game.active_player.choices)
       if board.win_validation(game.active_player.choices)

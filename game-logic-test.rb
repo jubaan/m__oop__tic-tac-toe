@@ -62,24 +62,4 @@ class Game
   def switch_players
     @active_player = @active_player == @player1 ? @player2 : @player1
   end
-
-  def turns(pick, _active_player)
-    board = Board.new
-    loop do
-      board.space_selection(pick, @active_player.mark, @active_player.choices)
-      @active_player.choices << pick
-      print @active_player.choices
-
-      if board.win_validation(@active_player.choices)
-        puts "Congratulations #{@active_player.name}, you're a winner"
-        result = true
-      elsif board.draw_validation
-        puts "It's a draw"
-        result = true
-      end
-
-      switch_players
-      break if result == true
-    end
-  end
 end
