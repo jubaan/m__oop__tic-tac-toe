@@ -5,7 +5,7 @@ prompt = '>'
 answer = gets.chomp
 
 while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
-  if /^y(es){0,1}$/i.match(answer)
+   if /^y(es){0,1}$/i.match(answer)
     prompt = '> '
     puts "\nPlayer 1 choose your name: "
     print prompt
@@ -37,10 +37,10 @@ while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
 
     def check(game_board, console)
       if game_board.win_validation(console.active_player.choices)
-         puts "Congratulations #{console.active_player.name}, you're a winner"
-       elsif game_board.draw_validation
-         puts "It's a draw"
-       end
+        puts "Congratulations #{console.active_player.name}, you're a winner"
+      elsif game_board.draw_validation
+        puts "It's a draw"
+      end
     end
     until game.result
       puts "\n#{game.active_player.name} pick a number to put your game piece"
@@ -49,6 +49,7 @@ while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
       print_board(board.availible_spaces)
       check(board, game)
       break if board.win_validation(game.active_player.choices) || board.draw_validation
+
       game.switch_players
     end
 
