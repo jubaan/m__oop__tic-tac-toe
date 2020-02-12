@@ -1,4 +1,4 @@
-require_relative './game-logic-test'
+require_relative 'game-logic-test'
 
 puts "\n" + '*' * 50
 puts "\n          ---- Tic Tac TRONIX 2000 ----"
@@ -53,25 +53,34 @@ while !/^y(es){0,1}$/i || !/^no{0,1}$/i
 
     board = Board.new
 
-    board.availible_spaces.each { |x|
+    board.availible_spaces.each do |x|
       separator = [1, 2, 4, 5, 7, 8]
       print "#{x < 10 ? "  #{board.availible_spaces[x - 1]} " : " #{board.availible_spaces[x - 1]} "}"
       print "|" if separator.include?(x)
       print "\n" if (x % 3).zero?
-    }
+    end
     until game.result
       puts "\n#{game.active_player.name} pick a number to put your game piece"
       pick = gets.chomp.to_i
-      game.turns(pick, game.active_player)
-      break unless game.result
+      # puts pick, game.active_player.mark, game.active_player.name
+      board.space_selection(pick, game.active_player.mark, game.active_player.name)
+      board.game_validation()
+      # board.availible_spaces.to_i.each do |x|
+      #   x.to_i
+      #   separator = [1, 2, 4, 5, 7, 8]
+      #   print board.availible_spaces[x]
+      #   print "|" if separator.include?(x)
+      #   print "\n" if (x % 3).zero?
+      # end
+      game.switch_players
     end
 
-    break if answer = 'y'
+    break if /^y(es){0,1}$/i
 
   elsif /^no{0,1}$/i
 
     puts 'Goodbye...'
-    break if answer = 'n'
+    break if /^no{0,1}$/i
 
   else
 

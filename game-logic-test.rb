@@ -24,7 +24,7 @@ class Board
   end
 
   def space_selection(pick, mark, choices)
-    if @availible_spaces.include?(pick) && pick != ~ /(\+ || |-)+/i
+    if @availible_spaces.include?(pick)
       @availible_spaces[pick - 1] = mark
       (@board_size**2).times do |x|
         x += 1
