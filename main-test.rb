@@ -30,9 +30,7 @@ prompt = '> '
 
 print "\nDo you wanna play? Y/n: "
 answer = gets.chomp
-game = Game.new(answer)
-
-while !/^y(es){0,1}$/i.match(answer) && !/^no{0,1}$/i.match(answer)
+while answer !=~ /^y(es){0,1}$/i || /^no{0,1}$/i
   if /^y(es){0,1}$/i =~ answer
     prompt = '> '
     puts "\nPlayer 1 choose your name: "
@@ -43,6 +41,8 @@ while !/^y(es){0,1}$/i.match(answer) && !/^no{0,1}$/i.match(answer)
     print prompt
     player2 = Player.new(gets.chomp.upcase)
 
+    game = Game.new(player1, player2, answer)
+
     puts "\nWelcome players!"
     puts "\n#{player1.name} you'll play as the '#{player1.mark}' and
   #{player2.name} you'll play as the '#{player2.mark}'."
@@ -50,10 +50,13 @@ while !/^y(es){0,1}$/i.match(answer) && !/^no{0,1}$/i.match(answer)
     puts "\nThis is the board\n\n"
 
     board = Board.new
+    break if answer = 'y'
 
   elsif /^no{0,1}$/i =~ answer
 
     puts 'Goodbye...'
+    break if answer = 'n'
+
 
   else
 

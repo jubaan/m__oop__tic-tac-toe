@@ -56,7 +56,9 @@ end
 class Game
   attr_reader :answer
 
-  def initialize(answer)
+  def initialize(player1, player2, answer)
+    @player1 = player1
+    @player2 = player2
     @answer = answer
   end
 
@@ -67,21 +69,21 @@ class Game
     if /^y(es){0,1}$/i =~ answer
       player_validation
 
-      puts "\nWelcome players!,
-      #{@p1.name.upcase} you'll play as the '#{@p1.mark}'
-      and #{@p2.name.upcase} you'll play as the '#{@p2.mark}'."
+      # puts "\nWelcome players!,
+      # #{@p1.name.upcase} you'll play as the '#{@p1.mark}'
+      # and #{@p2.name.upcase} you'll play as the '#{@p2.mark}'."
 
-      puts "\nThis is the board"
+      # puts "\nThis is the board"
 
       turns(@active_player)
 
     elsif /^no{0,1}$/i =~ answer
-      puts 'Goodbye...'
+      # puts 'Goodbye...'
     else
-      puts "\nDidn't get you. You said you wanna play: Yes or No?"
-      print prompt
-      answer = gets.chomp
-      play(answer)
+      # puts "\nDidn't get you. You said you wanna play: Yes or No?"
+      # print prompt
+      # answer = gets.chomp
+      # play(answer)
     end
   end
 
@@ -89,22 +91,22 @@ class Game
     @active_player = @active_player == @p1 ? @p2 : @p1
   end
 
-  def player_validation
-    prompt = '> '
-    puts "\nPlayer 1 choose your name: "
-    print prompt
-    name = gets.chomp
+  # def player_validation
+    # prompt = '> '
+    # puts "\nPlayer 1 choose your name: "
+    # print prompt
+    # name = gets.chomp
 
-    @p1 = Player.new(name)
+    # @p1 = Player.new(name)
 
-    puts "\nNow, Player 2 choose your name: "
-    print prompt
-    name = gets.chomp
+    # puts "\nNow, Player 2 choose your name: "
+    # print prompt
+    # name = gets.chomp
 
-    @p2 = Player.new(name)
+    # @p2 = Player.new(name)
 
-    @active_player = @p1
-  end
+    # @active_player = @p1
+  # end
 
   def turns(_active_player)
     game_on = Board.new
