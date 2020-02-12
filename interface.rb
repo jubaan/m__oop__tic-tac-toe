@@ -1,4 +1,3 @@
-
 puts "\n" + '*' * 50
 puts "\n          ---- Tic Tac TRONIX 2000 ----"
 puts "\n        An strategy game for two players."
@@ -25,5 +24,5 @@ puts "\n                   __RULES__
    If no player has 3 marks in a row, the game ends
    in a tie."
 
-prompt = '> '
 print "\nDo you wanna play? Y/n: "
+

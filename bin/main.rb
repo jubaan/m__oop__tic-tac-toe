@@ -1,6 +1,7 @@
 require_relative '../interface'
 require_relative '../lib/game_logic'
 
+prompt = '>'
 answer = gets.chomp
 
 while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
@@ -25,14 +26,13 @@ while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
     board = Board.new
 
     def print_board(game_board)
-      game_board.each_with_index do |x, y|
+      game_board.each_with_index do |_x, y|
         separator = [1, 2, 4, 5, 7, 8]
         print "  #{game_board[y]} "
         print '|' if separator.include?(y + 1)
         print "\n" if ((y + 1).to_i % 3).zero?
       end
     end
-
     print_board(board.availible_spaces)
     
     until game.result
