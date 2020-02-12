@@ -30,10 +30,9 @@ prompt = '> '
 
 print "\nDo you wanna play? Y/n: "
 answer = gets.chomp
-$_ = answer
 
-while !/^y(es){0,1}$/i || !/^no{0,1}$/i
-  if /^y(es){0,1}$/i
+while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
+  if /^y(es){0,1}$/i.match(answer)
     prompt = '> '
     puts "\nPlayer 1 choose your name: "
     print prompt
@@ -55,32 +54,31 @@ while !/^y(es){0,1}$/i || !/^no{0,1}$/i
 
     board.availible_spaces.each do |x|
       separator = [1, 2, 4, 5, 7, 8]
-      print "#{x < 10 ? "  #{board.availible_spaces[x - 1]} " : " #{board.availible_spaces[x - 1]} "}"
-      print "|" if separator.include?(x)
+      print x < 10 ? "  #{board.availible_spaces[x - 1]} " : " #{board.availible_spaces[x - 1]}"
+      print '|' if separator.include?(x)
       print "\n" if (x % 3).zero?
     end
     until game.result
       puts "\n#{game.active_player.name} pick a number to put your game piece"
       pick = gets.chomp.to_i
-      # puts pick, game.active_player.mark, game.active_player.name
-      board.space_selection(pick, game.active_player.mark, game.active_player.name)
-      board.game_validation()
-      # board.availible_spaces.to_i.each do |x|
-      #   x.to_i
-      #   separator = [1, 2, 4, 5, 7, 8]
-      #   print board.availible_spaces[x]
-      #   print "|" if separator.include?(x)
-      #   print "\n" if (x % 3).zero?
-      # end
+      print pick, game.active_player.mark, game.active_player.choices
+      board.space_selection(pick, game.active_player.mark, game.active_player.choices)
+      if board.win_validation(game.active_player.choices)
+        puts "Congratulations #{game.active_player.name}, you're a winner"
+        break
+      elsif board.draw_validation
+        puts "It's a draw"
+        break
+      end
       game.switch_players
     end
 
-    break if /^y(es){0,1}$/i
+    break
 
-  elsif /^no{0,1}$/i
+  elsif /^no{0,1}$/i.match(answer)
 
     puts 'Goodbye...'
-    break if /^no{0,1}$/i
+    break
 
   else
 

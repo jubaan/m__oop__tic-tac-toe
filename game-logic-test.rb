@@ -1,3 +1,4 @@
+# Create players
 class Player
   attr_reader :name, :mark, :pick, :choices
 
@@ -12,6 +13,7 @@ class Player
   end
 end
 
+# Create board
 class Board
   attr_reader :board_size, :availible_spaces, :win, :draw
   def initialize
@@ -26,9 +28,7 @@ class Board
   def space_selection(pick, mark, choices)
     if @availible_spaces.include?(pick)
       @availible_spaces[pick - 1] = mark
-      (@board_size**2).times do |x|
-        x += 1
-      end
+      choices << pick
     else
       puts 'Please select a valid option'
       print '> '
@@ -59,15 +59,11 @@ class Game
     @result = false
   end
 
-  def play
-    turns(@active_player)
-  end
-
   def switch_players
     @active_player = @active_player == @player1 ? @player2 : @player1
   end
 
-  def turns(pick, active_player)
+  def turns(pick, _active_player)
     board = Board.new
     loop do
       board.space_selection(pick, @active_player.mark, @active_player.choices)
