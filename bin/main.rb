@@ -1,3 +1,7 @@
+# rubocop:disable all"
+...
+# rubocop:enable all
+
 require_relative '../interface'
 require_relative '../lib/game_logic'
 
