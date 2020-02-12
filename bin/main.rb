@@ -34,7 +34,6 @@ while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
       end
     end
     print_board(board.availible_spaces)
-    
     until game.result
       puts "\n#{game.active_player.name} pick a number to put your game piece"
       pick = gets.chomp.to_i

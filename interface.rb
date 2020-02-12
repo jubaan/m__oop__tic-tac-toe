@@ -25,4 +25,3 @@ puts "\n                   __RULES__
    in a tie."
 
 print "\nDo you wanna play? Y/n: "
-
