@@ -1,3 +1,5 @@
+# frozen_block_nesting: true
+
 require_relative '../interface'
 require_relative '../lib/game_logic'
 
