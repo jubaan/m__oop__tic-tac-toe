@@ -28,20 +28,26 @@ while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
       end
     end
     print_board(board.availible_spaces)
-    until game.result
-      puts "\n#{game.active_player.name} pick a number to put your game piece"
-      pick = gets.chomp.to_i
-      board.space_selection(pick, game.active_player.mark, game.active_player.choices)
-      print_board(board.availible_spaces)
-      if board.win_validation(game.active_player.choices)
-        puts "Congratulations #{game.active_player.name}, you're a winner"
-        break
-      elsif board.draw_validation
+    def check(game_board, console)
+      if game_board.win_validation(console.active_player.choices)
+        puts "Congratulations #{console.active_player.name}, you're a winner"
+      elsif game_board.draw_validation
         puts "It's a draw"
-        break
       end
-      game.switch_players
     end
+
+    def game_loop(game_board, console)
+      until console.result
+        puts "\n#{console.active_player.name} pick a number to put your game piece"
+        pick = gets.chomp.to_i
+        game_board.space_selection(pick, console.active_player.mark, console.active_player.choices)
+        print_board(game_board.availible_spaces)
+        check(game_board, console)
+        break if game_board.win_validation(console.active_player.choices) || game_board.draw_validation
+        console.switch_players
+      end
+    end
+    game_loop(board, game)
     break
   elsif /^no{0,1}$/i.match(answer)
     puts 'Goodbye...'
