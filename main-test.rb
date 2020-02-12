@@ -47,7 +47,7 @@ while !/^y(es){0,1}$/i || !/^no{0,1}$/i
 
     puts "\nWelcome players!"
     puts "\n#{player1.name} you'll play as the '#{player1.mark}' and
-#{player2.name} you'll play as the '#{player2.mark}'."
+    #{player2.name} you'll play as the '#{player2.mark}'."
 
     puts "\nThis is the board\n"
 
@@ -59,6 +59,12 @@ while !/^y(es){0,1}$/i || !/^no{0,1}$/i
       print "|" if separator.include?(x)
       print "\n" if (x % 3).zero?
     }
+    until game.result
+      puts "\n#{game.active_player.name} pick a number to put your game piece"
+      pick = gets.chomp.to_i
+      game.turns(pick, game.active_player)
+      break unless game.result
+    end
 
     break if answer = 'y'
 

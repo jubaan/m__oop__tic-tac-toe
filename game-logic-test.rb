@@ -49,74 +49,35 @@ class Board
 end
 
 class Game
-  attr_reader :player1, :player2, :answer, :active_player
+  attr_reader :player1, :player2, :answer, :active_player, :result
 
   def initialize(player1, player2, answer)
     @player1 = player1
     @player2 = player2
     @answer = answer
     @active_player = @player1
+    @result = false
   end
 
   def play
-    prompt = '> '
-    if /^y(es){0,1}$/i =~ answer
-      player_validation
-
-      # puts "\nWelcome players!,
-      # #{@p1.name.upcase} you'll play as the '#{@p1.mark}'
-      # and #{@p2.name.upcase} you'll play as the '#{@p2.mark}'."
-
-      # puts "\nThis is the board"
-
-      turns(@active_player)
-
-    elsif /^no{0,1}$/i =~ answer
-      # puts 'Goodbye...'
-    else
-      # puts "\nDidn't get you. You said you wanna play: Yes or No?"
-      # print prompt
-      # answer = gets.chomp
-      # play(answer)
-    end
+    turns(@active_player)
   end
 
   def switch_players
     @active_player = @active_player == @player1 ? @player2 : @player1
   end
 
-  # def player_validation
-    # prompt = '> '
-    # puts "\nPlayer 1 choose your name: "
-    # print prompt
-    # name = gets.chomp
-
-    # @p1 = Player.new(name)
-
-    # puts "\nNow, Player 2 choose your name: "
-    # print prompt
-    # name = gets.chomp
-
-    # @p2 = Player.new(name)
-
-    # @active_player = @p1
-  # end
-
-  def turns()
-    game_on = Board.new
-    result = false
-
+  def turns(pick, active_player)
+    board = Board.new
     loop do
-      puts "\n#{@active_player.name} pick a number to put your game piece"
-      pick = gets.chomp.to_i
-      game_on.space_selection(pick, @active_player.mark, @active_player.choices)
+      board.space_selection(pick, @active_player.mark, @active_player.choices)
       @active_player.choices << pick
       print @active_player.choices
 
-      if game_on.win_validation(@active_player.choices)
+      if board.win_validation(@active_player.choices)
         puts "Congratulations #{@active_player.name}, you're a winner"
         result = true
-      elsif game_on.draw_validation
+      elsif board.draw_validation
         puts "It's a draw"
         result = true
       end
