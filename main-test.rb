@@ -30,8 +30,10 @@ prompt = '> '
 
 print "\nDo you wanna play? Y/n: "
 answer = gets.chomp
-while answer !=~ /^y(es){0,1}$/i || /^no{0,1}$/i
-  if /^y(es){0,1}$/i =~ answer
+$_ = answer
+
+while !/^y(es){0,1}$/i || !/^no{0,1}$/i
+  if /^y(es){0,1}$/i
     prompt = '> '
     puts "\nPlayer 1 choose your name: "
     print prompt
@@ -45,18 +47,25 @@ while answer !=~ /^y(es){0,1}$/i || /^no{0,1}$/i
 
     puts "\nWelcome players!"
     puts "\n#{player1.name} you'll play as the '#{player1.mark}' and
-  #{player2.name} you'll play as the '#{player2.mark}'."
+#{player2.name} you'll play as the '#{player2.mark}'."
 
-    puts "\nThis is the board\n\n"
+    puts "\nThis is the board\n"
 
     board = Board.new
+
+    board.availible_spaces.each { |x|
+      separator = [1, 2, 4, 5, 7, 8]
+      print "#{x < 10 ? "  #{board.availible_spaces[x - 1]} " : " #{board.availible_spaces[x - 1]} "}"
+      print "|" if separator.include?(x)
+      print "\n" if (x % 3).zero?
+    }
+
     break if answer = 'y'
 
-  elsif /^no{0,1}$/i =~ answer
+  elsif /^no{0,1}$/i
 
     puts 'Goodbye...'
     break if answer = 'n'
-
 
   else
 
@@ -66,22 +75,3 @@ while answer !=~ /^y(es){0,1}$/i || /^no{0,1}$/i
 
   end
 end
-
-
-
-
-
-
-
-
-
-# puts "\nThis is the board"
-
-
-
-# puts "\n Welcome #{player1.name} and #{player2.name.upcase} the game is about to start."
-
-# puts "\n Remember the player who gets FIRST 3 marks in a row wins."
-
-# puts "\n This is the board, you'll have to choose one space
-#  at a time by selecting the number of the square."

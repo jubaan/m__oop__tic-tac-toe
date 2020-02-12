@@ -14,15 +14,12 @@ end
 
 class Board
   attr_reader :board_size, :availible_spaces, :win, :draw
-
   def initialize
     @board_size = 3
     @availible_spaces = []
     (@board_size**2).times do |x|
       x += 1
       @availible_spaces << x
-      print "|#{x < 10 ? "  #{@availible_spaces[x - 1]} " : " #{@availible_spaces[x - 1]} "}"
-      print "|\n" if (x % board_size).zero?
     end
   end
 
@@ -31,8 +28,6 @@ class Board
       @availible_spaces[pick - 1] = mark
       (@board_size**2).times do |x|
         x += 1
-        print "|#{x < 10 ? "  #{@availible_spaces[x - 1]} " : " #{@availible_spaces[x - 1]} "}"
-        print "|\n" if (x % board_size).zero?
       end
     else
       puts 'Please select a valid option'
@@ -54,15 +49,14 @@ class Board
 end
 
 class Game
-  attr_reader :answer
+  attr_reader :player1, :player2, :answer, :active_player
 
   def initialize(player1, player2, answer)
     @player1 = player1
     @player2 = player2
     @answer = answer
+    @active_player = @player1
   end
-
-  attr_reader :p1, :p2, :active_player
 
   def play
     prompt = '> '
@@ -88,7 +82,7 @@ class Game
   end
 
   def switch_players
-    @active_player = @active_player == @p1 ? @p2 : @p1
+    @active_player = @active_player == @player1 ? @player2 : @player1
   end
 
   # def player_validation
@@ -108,7 +102,7 @@ class Game
     # @active_player = @p1
   # end
 
-  def turns(_active_player)
+  def turns()
     game_on = Board.new
     result = false
 
