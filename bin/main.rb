@@ -1,7 +1,6 @@
 require_relative '../interface'
 require_relative '../lib/game_logic'
 
-#This is a Tic Tac Toe Project
 prompt = '>'
 answer = gets.chomp
 
