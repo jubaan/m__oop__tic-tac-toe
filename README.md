@@ -19,7 +19,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://repl.it/@jubaan/mooptic-tac-toe-1)
 
 ## Getting Started
 
