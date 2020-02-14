@@ -1,125 +1,62 @@
-puts "\n" + '*' * 50
-puts "\n          ---- Tic Tac TRONIX 2000 ----"
-puts "\n        An strategy game for two players."
-puts "\n             Creative Commons 2020"
-puts "\n" + '*' * 50
-puts "\n Tic Tac TRONIX 2000 is based on the classic Tic
- Tac Toe game."
+require_relative '../interface'
+require_relative '../lib/game_logic'
 
-puts "\n INSTRUCTIONS: to play select \"Y\", you'll be
- asked to introduce the name of both Players. Once
- set up, players will take turns to leave their
- marks (X's or O's) on the board. The player who
- first has 3 marks in a row wins the game."
+prompt = '>'
+answer = gets.chomp
 
-puts "\n                   __RULES__
-\n1. The game is played on a grid that's 3x3 squares.
-2. Player One is X's and Player Two is 0's.
-3. X always starts the game.
-4. Players take turns putting their marks in unselected
-   squares.
-5. The first player to get 3 marks in a row (up,
-   down, across, or diagonally) is the winner.
-6. When all 9 squares are full, the game is over.
-   If no player has 3 marks in a row, the game ends
-   in a tie."
+while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
+  if /^y(es){0,1}$/i.match(answer)
+    prompt = '> '
+    puts "\nPlayer 1 choose your name: "
+    print prompt
+    player1 = Player.new(gets.chomp.upcase)
+    puts "\nNow, Player 2 choose your name: "
+    print prompt
+    player2 = Player.new(gets.chomp.upcase)
+    game = Game.new(player1, player2, answer)
+    puts "\nWelcome players!"
+    puts "\n#{player1.name} you'll play as the '#{player1.mark}' and
+    #{player2.name} you'll play as the '#{player2.mark}'."
+    puts "\nThis is the board\n"
+    board = Board.new
+    def print_board(game_board)
+      game_board.each_with_index do |_x, y|
+        separator = [1, 2, 4, 5, 7, 8]
+        print "  #{game_board[y]} "
+        print '|' if separator.include?(y + 1)
+        print "\n" if ((y + 1).to_i % 3).zero?
+      end
+    end
+    print_board(board.availible_spaces)
+    def check(game_board, console)
+      if game_board.win_validation(console.active_player.choices)
+        puts "Congratulations #{console.active_player.name}, you're a winner"
+      elsif game_board.draw_validation
+        puts "It's a draw"
+      end
+    end
 
-print "\n Do you want to play? Y/n: "
-# option = gets.chomp
+    def game_loop(game_board, console)
+      until console.result
+        puts "\n#{console.active_player.name} pick a number to put your game piece"
+        pick = gets.chomp.to_i
+        game_board.space_selection(pick, console.active_player.mark, console.active_player.choices)
+        print_board(game_board.availible_spaces)
+        check(game_board, console)
 
-puts "\n Player 1, choose your name: "
-print ' > '
-# player1 = Player.new(gets.chomp.upcase)
+        break if game_board.win_validation(console.active_player.choices) || game_board.draw_validation
 
-puts "\n Player 2, choose your name: "
-print ' > '
-# player2 = Player.new(gets.chomp.upcase)
-
-puts "\n Welcome palyer1.name and player2.name the game is about to start."
-
-puts "\n Remember the player who gets FIRST 3 marks in a row wins."
-
-puts "\n This is the board, you'll have to choose one space
- at a time by selecting the number of the square."
-
-board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-# game_on = true
-while game_on
-  puts "
-  \t     |     |
-  \t  #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]}
-  \t_____|_____|_____
-  \t     |     |
-  \t  #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]}
-  \t_____|_____|_____
-  \t     |     |
-  \t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
-  \t     |     |
-  "
-  print "\n\a player1.name your turn, choose number: "
-
-  if player1.name choice is a cell on the board
-    replace the cell space with player1.name game piece
-  else puts 'pick a number on the board'
+        console.switch_players
+      end
+    end
+    game_loop(board, game)
+    break
+  elsif /^no{0,1}$/i.match(answer)
+    puts 'Goodbye...'
+    break
+  else
+    puts "\nDidn't get you. You said you wanna play: Yes or No?"
+    print prompt
+    answer = gets.chomp
   end
-  # mark = gets.chomp
-
-  puts "
-  \t     |     |
-  \t  #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]}
-  \t_____|_____|_____
-  \t     |     |
-  \t  #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]}
-  \t_____|_____|_____
-  \t     |     |
-  \t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
-  \t     |     |
-  "
-  print "\n\a player2.name your turn, choose number: "
-  # mark = gets.chomp
-
-  puts "
-  \t     |     |
-  \t  #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]}
-  \t_____|_____|_____
-  \t     |     |
-  \t  #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]}
-  \t_____|_____|_____
-  \t     |     |
-  \t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
-  \t     |     |
-  "
-  print "\n\a player1.name your turn, choose number: "
-  # mark = gets.chomp
-
-  puts "
-  \t     |     |
-  \t  #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]}
-  \t_____|_____|_____
-  \t     |     |
-  \t  #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]}
-  \t_____|_____|_____
-  \t     |     |
-  \t  #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]}
-  \t     |     |
-  "
-  print "\n\a player2.name your turn, choose number: "
-  # mark = gets.chomp
-
-  if game board cell is filled
-    puts winner if 3 + ' game pieces are crossed'
-    puts loser + ' you lose'
-    puts draw if no crosses on the board
-    game_on = false
-  end
-  break unless game_on
 end
-
-puts "\n" + '*' * 50
-puts "\n                    END SCORE"
-puts "\n          player1.name 1 | 0 player2.name"
-puts "\n" + '*' * 50
-puts "\n CONGRATULATIONS >>> player1.name <<< YOU WON!!!!"
-puts "\n" + '*' * 50
-print "\n Do you want a to play again Y/n: "
-# option = gets.chomp
