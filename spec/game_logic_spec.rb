@@ -2,16 +2,23 @@ require './lib/game_logic'
 
 RSpec.describe 'testing game logic' do
   describe Player do
+    let(:player1) { Player.new('player1') }
+    let(:player2) { Player.new('player2') }
+
     context 'Player' do
       it 'returns player1 mark' do
-        player1 = Player.new('player1')
-        expect(player1.mark).to eql('+')
-        expect(player1.mark).not_to eql('-')
+        expect(player1.mark).to eql('+') 
+      end
+
+      it 'returns player1 mark' do
+        expect(player1.mark).!= ('-')
       end
   
       it 'returns player2 mark' do
-        player2 = Player.new('player2')
         expect(player2.mark).to eql('-')
+      end
+
+      it 'returns player2 mark' do
         expect(player2.mark).not_to eql('+')
       end
     end
@@ -22,6 +29,10 @@ RSpec.describe 'testing game logic' do
     context 'Board' do
       it 'returns a new board with a changed position' do
         expect(board.space_selection(4, '+', [])).to eq([4])
+      end
+
+      it 'returns a new board with a changed position' do
+        expect(board.space_selection(4, '+', [])).not_to eq([5])
       end
     end
 
