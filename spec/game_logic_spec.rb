@@ -7,13 +7,12 @@ RSpec.describe 'testing game logic' do
 
     context 'Player' do
       it 'returns player1 mark' do
-        expect(player1.mark).to eql('+') 
+        expect(player1.mark).to eql('+')
       end
 
       it 'returns player1 mark' do
-        expect(player1.mark).!= ('-')
+        expect(player1.mark).!= '-'
       end
-  
       it 'returns player2 mark' do
         expect(player2.mark).to eql('-')
       end
