@@ -80,8 +80,7 @@ To get a local copy up and running follow these simple example steps.
 
 ## Authors
 
-👤 **Author1**
-
+👤 **Julio Añoveros**
 - Github: [@jubaan](https://github.com/jubaan)
 - Twitter: [@AnoverosJulio](https://twitter.com/AnoverosJulio)
 - Linkedin:
