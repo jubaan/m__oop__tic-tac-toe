@@ -7,7 +7,7 @@ class Player
 
   def initialize(name)
     @name = name
-    @mark = @@count.zero? ? '+' : '-'
+    @mark = @@count.zero? ? 'X' : 'O'
     @pick = pick
     @choices = []
     @@count += 1
