@@ -7,18 +7,18 @@ RSpec.describe 'testing game logic' do
 
     context 'Player' do
       it 'returns player1 mark' do
-        expect(player1.mark).to eql('+')
+        expect(player1.mark).to eql('X')
       end
 
       it 'returns player1 mark' do
-        expect(player1.mark).!= '-'
+        expect(player1.mark).!= 'O'
       end
       it 'returns player2 mark' do
-        expect(player2.mark).to eql('-')
+        expect(player2.mark).to eql('O')
       end
 
       it 'returns player2 mark' do
-        expect(player2.mark).not_to eql('+')
+        expect(player2.mark).not_to eql('X')
       end
     end
   end
@@ -27,11 +27,11 @@ RSpec.describe 'testing game logic' do
     let(:board) { Board.new }
     context 'Board' do
       it 'returns a new board with a changed position' do
-        expect(board.space_selection(4, '+', [])).to eq([4])
+        expect(board.space_selection(4, 'X', [])).to eq([4])
       end
 
       it 'returns a new board with a changed position' do
-        expect(board.space_selection(4, '+', [])).not_to eq([5])
+        expect(board.space_selection(4, 'X', [])).not_to eq([5])
       end
     end
 
@@ -56,7 +56,7 @@ RSpec.describe 'testing game logic' do
             @availible_spaces = availible_spaces
           end
         end
-        board = Board.new(%w[- + - + - + - + -])
+        board = Board.new(%w[O X O X O X O X O])
 
         expect(board.draw_validation).to eq(true)
       end
