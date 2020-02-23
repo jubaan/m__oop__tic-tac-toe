@@ -2,17 +2,17 @@ require_relative '../interface'
 require_relative '../lib/game_logic'
 
 prompt = '>'
-answer = gets.chomp
+answer = gets
 
 while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
   if /^y(es){0,1}$/i.match(answer)
     prompt = '> '
     puts "\nPlayer 1 choose your name: "
     print prompt
-    player1 = Player.new(gets.chomp.upcase)
+    player1 = Player.new(gets.upcase)
     puts "\nNow, Player 2 choose your name: "
     print prompt
-    player2 = Player.new(gets.chomp.upcase)
+    player2 = Player.new(gets.upcase)
     game = Game.new(player1, player2, answer)
     puts "\nWelcome players!"
     puts "\n#{player1.name} you'll play as the '#{player1.mark}' and
@@ -39,7 +39,7 @@ while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
     def game_loop(game_board, console)
       until console.result
         puts "\n#{console.active_player.name} pick a number to put your game piece"
-        pick = gets.chomp.to_i
+        pick = gets.to_i
         game_board.space_selection(pick, console.active_player.mark, console.active_player.choices)
         print_board(game_board.availible_spaces)
         check(game_board, console)
@@ -57,6 +57,6 @@ while !/^y(es){0,1}$/i.match(answer) || !/^no{0,1}$/i.match(answer)
   else
     puts "\nDidn't get you. You said you wanna play: Yes or No?"
     print prompt
-    answer = gets.chomp
+    answer = gets
   end
 end
